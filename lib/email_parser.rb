@@ -1,16 +1,14 @@
-class EmailParser
+class EmailAddressParser
 
-  attr_reader :addresses_raw
+    attr_accessor :email
+    def  initialize(emails)
+      @email = emails
+    end
 
-  def initialize(addresses_string)
-    @addresses_raw = addresses_string
+    def parse
+      email_array = @email.split(/[, ]/).uniq
+      email_array.reject! {|element| element.empty?}
+      email_array
+    end
+
   end
-
-  def parse
- 
-    addresses_raw.split(",").join.split.uniq
-    #addresses_raw.split(/[\s,]+/).uniq
-    #addresses_raw.split(/ |, |,/).uniq
-  end
-
-end
